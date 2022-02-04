@@ -1,6 +1,6 @@
 ﻿namespace FurnitureAPI.Models
 {
-  public class Furniture
+  public class Furniture : DomainEntity
   {
     public int IdFurniture { get; set; }
     public int IdOrder { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace FurnitureAPI.Models
 {
-  public class StatusOrder
+  public class StatusOrder : DomainEntity
   {
     public int IdStatusOrder { get; set; }
     public string StatusOrderName { get; set; }

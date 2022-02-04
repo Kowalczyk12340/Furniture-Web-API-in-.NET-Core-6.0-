@@ -1,0 +1,7 @@
+C:\Users\Dell\Desktop\c#\FurnitureAPI\FurnitureAPI\obj\Debug\net6.0\FurnitureAPI.csproj.AssemblyReference.cache
+C:\Users\Dell\Desktop\c#\FurnitureAPI\FurnitureAPI\obj\Debug\net6.0\FurnitureAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Desktop\c#\FurnitureAPI\FurnitureAPI\obj\Debug\net6.0\FurnitureAPI.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\c#\FurnitureAPI\FurnitureAPI\obj\Debug\net6.0\FurnitureAPI.AssemblyInfo.cs
+C:\Users\Dell\Desktop\c#\FurnitureAPI\FurnitureAPI\obj\Debug\net6.0\FurnitureAPI.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\c#\FurnitureAPI\FurnitureAPI\obj\Debug\net6.0\FurnitureAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Dell\Desktop\c#\FurnitureAPI\FurnitureAPI\obj\Debug\net6.0\FurnitureAPI.MvcApplicationPartsAssemblyInfo.cache

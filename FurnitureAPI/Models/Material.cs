@@ -1,6 +1,6 @@
 ﻿namespace FurnitureAPI.Models
 {
-  public class Material
+  public class Material : DomainEntity
   {
     public int IdMaterial { get; set; }
     public int IdCategoryMaterial { get; set; }

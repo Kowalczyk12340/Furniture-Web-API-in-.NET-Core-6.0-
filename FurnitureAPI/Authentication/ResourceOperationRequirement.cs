@@ -1,6 +1,20 @@
-﻿namespace FurnitureAPI.Authentication
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace FurnitureAPI.Authentication
 {
-  public class ResourceOperationRequirement
+  public enum ResourceOperation
   {
+    Create,
+    Read,
+    Update,
+    Delete
+  }
+  public class ResourceOperationRequirement : IAuthorizationRequirement
+  {
+    public ResourceOperationRequirement(ResourceOperation resourceOperation)
+    {
+      ResourceOperation = resourceOperation;
+    }
+    public ResourceOperation ResourceOperation { get; set; }
   }
 }

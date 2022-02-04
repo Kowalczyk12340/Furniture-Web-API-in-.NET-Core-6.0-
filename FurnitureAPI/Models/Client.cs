@@ -1,6 +1,6 @@
 ﻿namespace FurnitureAPI.Models
 {
-  public class Client
+  public class Client : DomainEntity
   {
     public int IdClient { get; set; }
     public string ClientName { get; set; }
