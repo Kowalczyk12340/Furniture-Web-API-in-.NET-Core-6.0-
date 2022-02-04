@@ -1,4 +1,8 @@
-﻿namespace FurnitureAPI.Services.Interfaces
+﻿using FurnitureAPI.Dtos;
+using FurnitureAPI.Dtos.Create;
+using FurnitureAPI.Dtos.Update;
+
+namespace FurnitureAPI.Services.Interfaces
 {
   public interface IRoleService
   {

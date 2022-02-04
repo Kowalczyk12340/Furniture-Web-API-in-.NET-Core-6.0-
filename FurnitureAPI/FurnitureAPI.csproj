@@ -36,12 +36,4 @@
     
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middlewares\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Seeders\" />
-    <Folder Include="Validators\" />
-    <Folder Include="PrivateFiles\" />
-  </ItemGroup>
-
 </Project>

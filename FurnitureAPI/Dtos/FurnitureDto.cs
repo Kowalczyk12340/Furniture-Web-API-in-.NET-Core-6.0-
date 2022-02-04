@@ -6,7 +6,7 @@
     public int IdOrder { get; set; }
     public virtual OrderDto Order { get; set; }
     public int IdCategoryFurniture { get; set; }
-    public virtual CreateCategoryFurnitureDto CategoryFurniture { get; set; }
+    public virtual CategoryFurnitureDto CategoryFurniture { get; set; }
     public string FurnitureName { get; set; }
     public double FurniturePrice { get; set; }
     public string FurnitureUnit { get; set; }

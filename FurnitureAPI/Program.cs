@@ -129,7 +129,7 @@ builder.Services.AddScoped<IValidator<FurnitureQuery>, FurnitureQueryValidator>(
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<RequestTimeMiddleware>();
-builder.Services.AddScoped<RequestResponseLoggingMiddleware>();
+//builder.Services.AddScoped<RequestResponseLoggingMiddleware>();
 
 builder.Services.AddEndpointsApiExplorer();
 
