@@ -1,12 +1,7 @@
-﻿namespace FurnitureAPI.Dtos
+﻿namespace FurnitureAPI.Dtos.Create
 {
-  public class FurnitureDto
+  public class CreateFurnitureDto
   {
-    public int IdFurniture { get; set; }
-    public int IdOrder { get; set; }
-    public virtual OrderDto Order { get; set; }
-    public int IdCategoryFurniture { get; set; }
-    public virtual CreateCategoryFurnitureDto CategoryFurniture { get; set; }
     public string FurnitureName { get; set; }
     public double FurniturePrice { get; set; }
     public string FurnitureUnit { get; set; }
@@ -14,5 +9,7 @@
     public double FurnitureHeight { get; set; }
     public double FurnitureDepth { get; set; }
     public string FurnitureDescription { get; set; }
+    public int IdOrder { get; set; }
+    public int IdCategoryFurniture { get; set; }
   }
 }

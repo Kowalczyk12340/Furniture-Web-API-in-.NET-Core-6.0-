@@ -1,8 +1,7 @@
-﻿namespace FurnitureAPI.Dtos
+﻿namespace FurnitureAPI.Dtos.Create
 {
   public class CreateCategoryFurnitureDto
   {
-    public int IdCategoryFurniture { get; set; }
     public string CategoryFurnitureName { get; set; }
     public string CategoryFurnitureDescription { get; set; }
   }
