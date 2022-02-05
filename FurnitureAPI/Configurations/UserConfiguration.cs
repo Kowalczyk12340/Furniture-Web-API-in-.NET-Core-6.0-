@@ -21,7 +21,7 @@ namespace FurnitureAPI.Configurations
         .HasMaxLength(50);
       builder.Property(u => u.Password)
         .IsRequired()
-        .HasMaxLength(30);
+        .HasMaxLength(250);
     }
   }
 }
