@@ -3,6 +3,7 @@ using FurnitureAPI.Data;
 using FurnitureAPI.Dtos;
 using FurnitureAPI.Dtos.Create;
 using FurnitureAPI.Dtos.Update;
+using FurnitureAPI.Models;
 
 namespace FurnitureAPI.Services.Interfaces
 {
@@ -21,7 +22,11 @@ namespace FurnitureAPI.Services.Interfaces
 
     public async Task<int> Create(CreateClientDto dto)
     {
-      throw new NotImplementedException();
+      _logger.LogInformation("Creating a new client");
+      var client = _mapper.Map<Client>(dto);
+      await _dbContext.Clients.AddAsync(client);
+      await _dbContext.SaveChangesAsync();
+      return client.IdClient;
     }
 
     public async Task Delete(int id)
