@@ -5,11 +5,11 @@ namespace FurnitureAPI.Services.Interfaces
 {
   public interface IUserService
   {
-    Task<UserDto> GetById(long id);
+    Task<UserDto> GetById(int id);
     Task<IEnumerable<UserDto>> GetAll();
-    Task Delete(long id);
+    Task Delete(int id);
     string SaveToCsv(IEnumerable<UserDto> components);
-    Task Update(long id, UpdateUserDto dto);
+    Task Update(int id, UpdateUserDto dto);
     Task RegisterUser(RegisterDto dto);
     Task<string> GenerateJwt(LoginDto dto);
   }

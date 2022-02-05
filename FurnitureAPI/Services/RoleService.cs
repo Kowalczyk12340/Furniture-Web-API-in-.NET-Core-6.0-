@@ -22,7 +22,7 @@ namespace FurnitureAPI.Services
       _mapper = mapper;
       _logger = logger;
     }
-    public async Task<long> Create(CreateRoleDto dto)
+    public async Task<int> Create(CreateRoleDto dto)
     {
       _logger.LogInformation("Create new role");
       var role = _mapper.Map<Role>(dto);
@@ -31,7 +31,7 @@ namespace FurnitureAPI.Services
       return role.IdRole;
     }
 
-    public async Task Delete(long id)
+    public async Task Delete(int id)
     {
       _logger.LogWarning($"It will be deleted role with id: {id}");
 
@@ -57,7 +57,7 @@ namespace FurnitureAPI.Services
       return roleDtos;
     }
 
-    public async Task<RoleDto> GetById(long id)
+    public async Task<RoleDto> GetById(int id)
     {
       _logger.LogInformation($"Display role with id: {id}");
       var role = await _dbContext
@@ -73,9 +73,20 @@ namespace FurnitureAPI.Services
       return result;
     }
 
-    public async Task Update(long id, UpdateRoleDto dto)
+    public async Task Update(int id, UpdateRoleDto dto)
     {
-      throw new NotImplementedException();
+      _logger.LogInformation($"Edit role with id: {id}");
+      var role = await _dbContext
+        .Roles
+        .FirstOrDefaultAsync(x => x.IdRole == id);
+
+      if(role is null)
+      {
+        throw new NotFoundException("Role is not found");
+      }
+
+      role.RoleName = dto.RoleName;
+      await _dbContext.SaveChangesAsync();
     }
   }
 }

@@ -11,5 +11,10 @@
     public string RoleName { get; set; }
     public string Password { get; set; }
     public string Nationality { get; set; }
+
+    public string GetExportObject()
+    {
+      return $"{IdUser};{UserFirstName};{LastName};{IsActive};{DateOfBirth}{Login};{Nationality};{RoleName}";
+    }
   }
 }

@@ -123,7 +123,14 @@ var mapperConfig = new MapperConfiguration(mc =>
 });
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
-//DODAJ NASTEPNE SERWISY
+builder.Services.AddScoped<ICategoryFurnitureService, CategoryFurnitureService>();
+builder.Services.AddScoped<ICategoryMaterialService, CategoryMaterialService>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IFurnitureService, FurnitureService>();
+builder.Services.AddScoped<IMaterialService, MaterialService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderStatusService, OrderStatusService>();
 builder.Services.AddScoped<IValidator<RegisterDto>, RegisterUserDtoValidator>();
 builder.Services.AddScoped<IValidator<FurnitureQuery>, FurnitureQueryValidator>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();

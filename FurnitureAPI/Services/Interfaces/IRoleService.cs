@@ -6,10 +6,10 @@ namespace FurnitureAPI.Services.Interfaces
 {
   public interface IRoleService
   {
-    Task<RoleDto> GetById(long id);
+    Task<RoleDto> GetById(int id);
     Task<IEnumerable<RoleDto>> GetAll();
-    Task<long> Create(CreateRoleDto dto);
-    Task Delete(long id);
-    Task Update(long id, UpdateRoleDto dto);
+    Task<int> Create(CreateRoleDto dto);
+    Task Delete(int id);
+    Task Update(int id, UpdateRoleDto dto);
   }
 }
