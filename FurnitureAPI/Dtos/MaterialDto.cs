@@ -10,5 +10,10 @@
     public string MaterialUnit { get; set; }
     public int MaterialStockStatus { get; set; }
     public string MaterialDescription { get; set; }
+
+    public string GetExportObject()
+    {
+      return $"{IdMaterial};{IdCategoryMaterial};{MaterialName};{MaterialPrice};{MaterialUnit};{MaterialStockStatus};{MaterialDescription};";
+    }
   }
 }

@@ -10,5 +10,10 @@
     public int FurnitureMaterialAmount { get; set; }
     public double FurnitureMaterialPrice { get; set; }
     public string FurnitureMaterialDescription { get; set; }
+
+    public string GetExportObject()
+    {
+      return $"{IdFurnitureMaterial};{IdFurniture};{IdMaterial};{FurnitureMaterialAmount};{FurnitureMaterialPrice};{FurnitureMaterialDescription};";
+    }
   }
 }

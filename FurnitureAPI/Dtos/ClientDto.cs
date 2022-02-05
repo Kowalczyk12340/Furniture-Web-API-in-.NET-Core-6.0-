@@ -14,5 +14,10 @@
     public string ClientPostPlace { get; set; }
     public string ClientPostalCode { get; set; }
     public string ClientInterested { get; set; }
+
+    public string GetExportObject()
+    {
+      return $"{IdClient};{ClientName};{ClientSurname};{ClientPesel};{ClientPhone};{ClientEmail};{ClientTown};{ClientStreet};{ClientNumberHome};{ClientPostPlace};{ClientPostalCode};{ClientInterested};";
+    }
   }
 }

@@ -16,5 +16,10 @@
     public double OrderPrePayment { get; set; }
     public double OrderPayment { get; set; }
     public string OrderInfo { get; set; }
+
+    public string GetExportObject()
+    {
+      return $"{IdOrder};{IdClient};{IdEmployee};{IdStatusOrder};{OrderCode};{OrderDateSubmission};{OrderDateRealization};{OrderDeadlineRealization};{OrderPrePayment};{OrderPayment};{OrderInfo};";
+    }
   }
 }

@@ -14,5 +14,10 @@
     public double FurnitureHeight { get; set; }
     public double FurnitureDepth { get; set; }
     public string FurnitureDescription { get; set; }
+
+    public string GetExportObject()
+    {
+      return $"{IdFurniture};{IdOrder};{IdCategoryFurniture};{FurnitureName};{FurniturePrice};{FurnitureUnit};{FurnitureWidth};{FurnitureHeight};{FurnitureDepth};{FurnitureDescription};";
+    }
   }
 }

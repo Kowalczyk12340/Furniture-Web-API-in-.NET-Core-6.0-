@@ -9,5 +9,10 @@
     public string EmployeeNumberHome { get; set; }
     public string EmployeeEmail { get; set; }
     public int EmployeeSeniority { get; set; }
+
+    public string GetExportObject()
+    {
+      return $"{IdEmployee};{EmployeeName};{EmployeeSurname};{EmployeeIsDelivered};{EmployeeNumberHome};{EmployeeEmail};{EmployeeSeniority};";
+    }
   }
 }
