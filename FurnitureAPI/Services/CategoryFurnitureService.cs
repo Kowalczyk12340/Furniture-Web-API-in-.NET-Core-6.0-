@@ -3,6 +3,10 @@ using FurnitureAPI.Data;
 using FurnitureAPI.Dtos;
 using FurnitureAPI.Dtos.Create;
 using FurnitureAPI.Dtos.Update;
+using FurnitureAPI.Exceptions;
+using FurnitureAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace FurnitureAPI.Services.Interfaces
 {
@@ -21,32 +25,88 @@ namespace FurnitureAPI.Services.Interfaces
 
     public async Task<int> Create(CreateCategoryFurnitureDto dto)
     {
-      throw new NotImplementedException();
+      _logger.LogInformation("Creating a new category furniture");
+      var categoryFurniture = _mapper.Map<CategoryFurniture>(dto);
+      await _dbContext.CategoryFurnitures.AddAsync(categoryFurniture);
+      await _dbContext.SaveChangesAsync();
+      return categoryFurniture.IdCategoryFurniture;
     }
 
     public async Task Delete(int id)
     {
-      throw new NotImplementedException();
+      _logger.LogWarning($"It will be deleted category material with {id}");
+      var categoryMaterial = await _dbContext
+        .CategoryMaterials
+        .FirstOrDefaultAsync(x => x.IdCategoryMaterial == id);
+
+      if(categoryMaterial is null)
+      {
+        throw new NotFoundException("Category material is not found");
+      }
+
+      _dbContext.CategoryMaterials.Remove(categoryMaterial);
+      await _dbContext.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<CategoryFurnitureDto>> GetAll()
     {
-      throw new NotImplementedException();
+      _logger.LogInformation($"Display all the category furnitures");
+
+      var categoryFurnitures = await _dbContext
+        .CategoryMaterials
+        .ToListAsync();
+
+      var categoryFurnitureDtos = _mapper.Map<List<CategoryFurnitureDto>>(categoryFurnitures);
+      return categoryFurnitureDtos;
     }
 
     public async Task<CategoryFurnitureDto> GetById(int id)
     {
-      throw new NotImplementedException();
+      _logger.LogInformation($"Display category furniture with chosen {id}");
+
+      var categoryFurniture = await _dbContext
+        .CategoryFurnitures
+        .FirstOrDefaultAsync(x => x.IdCategoryFurniture == id);
+
+      var result = _mapper.Map<CategoryFurnitureDto>(categoryFurniture);
+      return result;
     }
 
     public string SaveToCsv(IEnumerable<CategoryFurnitureDto> components)
     {
-      throw new NotImplementedException();
+      var headers = "IdCategoryFurniture;CategoryFurnitureName;CategoryFurnitureDescription";
+      
+      var csv = new StringBuilder(headers);
+
+      csv.Append(Environment.NewLine);
+
+      foreach (var component in components)
+      {
+        csv.Append(component.GetExportObject());
+        csv.Append(Environment.NewLine);
+      }
+      csv.Append($"Count: {components.Count()}");
+      csv.Append(Environment.NewLine);
+
+      return csv.ToString();
     }
 
     public async Task Update(long id, UpdateCategoryFurnitureDto dto)
     {
-      throw new NotImplementedException();
+      _logger.LogInformation($"Edit category furniture with {id}");
+      var categoryFurniture = await _dbContext
+        .CategoryFurnitures
+        .FirstOrDefaultAsync(x => x.IdCategoryFurniture == id);
+
+      if(categoryFurniture is null)
+      {
+        throw new NotFoundException("Category furniture is not found");
+      }
+
+      categoryFurniture.CategoryFurnitureName = dto.CategoryFurnitureName;
+      categoryFurniture.CategoryFurnitureDescription = dto.CategoryFurnitureDescription;
+
+      await _dbContext.SaveChangesAsync();
     }
   }
 }
