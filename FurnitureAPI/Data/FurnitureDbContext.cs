@@ -26,6 +26,13 @@ namespace FurnitureAPI.Data
     public DbSet<StatusOrder> StatusOrders { get; set; }
     public DbSet<User> Users { get; set; }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      base.OnModelCreating(modelBuilder);
+
+      modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
+
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
       var entities = ChangeTracker.Entries<DomainEntity>().ToList();
@@ -48,18 +55,11 @@ namespace FurnitureAPI.Data
 
       return result;
     }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-      base.OnModelCreating(modelBuilder);
-
-      modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-    }
   }
 
   public static class SportDbContextExtensions
   {
-    public static IServiceCollection AddSportDbContext(this IServiceCollection services, string connection)
+    public static IServiceCollection AddFurnitureDbContext(this IServiceCollection services, string connection)
     {
       services.AddDbContext<FurnitureDbContext>(options => { options.UseSqlServer(connection); });
 

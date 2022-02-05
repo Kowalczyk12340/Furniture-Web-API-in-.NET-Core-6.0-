@@ -56,7 +56,7 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
-//builder.Services.AddScoped<IAuthorizationHandler, SportClubResourceOperationRequirementHandler>();
+//builder.Services.AddScoped<IAuthorizationHandler, FurnitureResourceOperationRequirementHandler>();
 //builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews()
@@ -87,8 +87,8 @@ builder.Services.AddSwaggerGen(options =>
   options.SwaggerDoc("v1", new OpenApiInfo
   {
     Version = "v1",
-    Title = "Sport API",
-    Description = "An API for managing and doing CRUD operations for Sport API"
+    Title = "Furniture API",
+    Description = "An API for managing and doing CRUD operations for Furniture API. Furniture API with registration and credentials. Saving to csv file and interesting possibilities"
   });
   var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
   var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -110,7 +110,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddSingleton<IClock, SystemClock>(x => SystemClock.Instance);
-builder.Services.AddSportDbContext(builder.Configuration.GetConnectionString("Database"));
+builder.Services.AddFurnitureDbContext(builder.Configuration.GetConnectionString("Database"));
 builder.Services.AddDbContext<FurnitureDbContext>
    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddMediatR(typeof(Program));
@@ -136,7 +136,6 @@ builder.Services.AddScoped<IValidator<FurnitureQuery>, FurnitureQueryValidator>(
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<RequestTimeMiddleware>();
-//builder.Services.AddScoped<RequestResponseLoggingMiddleware>();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -145,14 +144,29 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+  app.UseDeveloperExceptionPage();
   app.UseSwagger();
-  app.UseSwaggerUI();
+  app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FurnitureAPI v1"));
 }
 
+app.UseResponseCaching();
+app.UseStaticFiles();
+//Enable CORS
+app.UseCors("frontendConnection");
+
+app.UseMiddleware<FurnitureAPIAuthMiddleware>();
+app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<RequestTimeMiddleware>();
+app.UseAuthentication();
 app.UseHttpsRedirection();
+
+app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+  endpoints.MapControllers();
+});
 
 app.Run();
