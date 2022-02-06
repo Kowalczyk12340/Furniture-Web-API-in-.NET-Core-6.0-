@@ -2,7 +2,7 @@
 {
   public class Role : DomainEntity
   {
-    public int IdRole { get; set; }
+    public int RoleId { get; set; }
     public string RoleName { get; set; }
   }
 }

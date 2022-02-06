@@ -2,7 +2,7 @@
 {
   public class ClientDto
   {
-    public int IdClient { get; set; }
+    public int ClientId { get; set; }
     public string ClientName { get; set; }
     public string ClientSurname { get; set; }
     public string ClientPesel { get; set; }
@@ -17,7 +17,7 @@
 
     public string GetExportObject()
     {
-      return $"{IdClient};{ClientName};{ClientSurname};{ClientPesel};{ClientPhone};{ClientEmail};{ClientTown};{ClientStreet};{ClientNumberHome};{ClientPostPlace};{ClientPostalCode};{ClientInterested};";
+      return $"{ClientId};{ClientName};{ClientSurname};{ClientPesel};{ClientPhone};{ClientEmail};{ClientTown};{ClientStreet};{ClientNumberHome};{ClientPostPlace};{ClientPostalCode};{ClientInterested};";
     }
   }
 }

@@ -2,7 +2,7 @@
 {
   public class StatusOrder : DomainEntity
   {
-    public int IdStatusOrder { get; set; }
+    public int StatusOrderId { get; set; }
     public string StatusOrderName { get; set; }
     public string StatusOrderDescription { get; set; }
   }

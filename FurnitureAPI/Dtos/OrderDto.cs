@@ -2,12 +2,12 @@
 {
   public class OrderDto
   {
-    public int IdOrder { get; set; }
-    public int IdClient { get; set; }
+    public int OrderId { get; set; }
+    public int ClientId { get; set; }
     public virtual ClientDto Client { get; set; }
-    public int IdEmployee { get; set; }
+    public int EmployeeId { get; set; }
     public virtual EmployeeDto Employee { get; set; }
-    public int IdStatusOrder { get; set; }
+    public int StatusOrderId { get; set; }
     public virtual StatusOrderDto StatusOrder { get; set; }
     public string OrderCode { get; set; }
     public DateTime OrderDateSubmission { get; set; }
@@ -19,7 +19,7 @@
 
     public string GetExportObject()
     {
-      return $"{IdOrder};{IdClient};{IdEmployee};{IdStatusOrder};{OrderCode};{OrderDateSubmission};{OrderDateRealization};{OrderDeadlineRealization};{OrderPrePayment};{OrderPayment};{OrderInfo};";
+      return $"{OrderId};{ClientId};{EmployeeId};{StatusOrderId};{OrderCode};{OrderDateSubmission};{OrderDateRealization};{OrderDeadlineRealization};{OrderPrePayment};{OrderPayment};{OrderInfo};";
     }
   }
 }

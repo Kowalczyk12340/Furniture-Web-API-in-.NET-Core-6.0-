@@ -1,6 +1,7 @@
 ﻿using FurnitureAPI.Data;
 using FurnitureAPI.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
 
 namespace FurnitureAPI.Seeders
 {
@@ -17,23 +18,23 @@ namespace FurnitureAPI.Seeders
 
     public void Seed()
     {
-      if(_dbContext.Database.CanConnect())
+      if (_dbContext.Database.CanConnect())
       {
-        if(_dbContext.Roles.Any())
+        if (_dbContext.Roles.Any())
         {
           var roles = GetRoles();
           _dbContext.Roles.AddRange(roles);
           _dbContext.SaveChanges();
         }
 
-        if(_dbContext.Users.Any())
+        if (_dbContext.Users.Any())
         {
           var users = GetUsers();
           _dbContext.Users.AddRange(users);
           _dbContext.SaveChanges();
         }
 
-        if(_dbContext.Furnitures.Any())
+        if (_dbContext.Furnitures.Any())
         {
           var furnitures = GetFurnitures();
           _dbContext.Furnitures.AddRange(furnitures);
@@ -105,12 +106,61 @@ namespace FurnitureAPI.Seeders
 
     private IEnumerable<User> GetUsers()
     {
-      return null;
+      var user = new User
+      {
+        Login = "marcinkowalczyk24.7@gmail.com",
+        UserFirstName = "Marcin",
+        LastName = "Kowalczyk",
+        DateOfBirth = DateTime.ParseExact("1999-06-10 16:10", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture),
+        Nationality = "Polska",
+        RoleId = 1
+      };
+      user.Password = _passwordHasher.HashPassword(user, "Marcingrafik1#");
+
+      var user1 = new User
+      {
+        Login = "marcinkowalczyk24.5@wp.pl",
+        UserFirstName = "Marcin",
+        LastName = "Kowalczyk",
+        DateOfBirth = DateTime.ParseExact("1999-06-10 16:10", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture),
+        Nationality = "Polska",
+        RoleId = 2
+      };
+      user1.Password = _passwordHasher.HashPassword(user1, "Marcingrafik1#");
+
+      var user2 = new User
+      {
+        Login = "karol.strasburger@gmail.com",
+        UserFirstName = "Karol",
+        LastName = "Strasburger",
+        DateOfBirth = DateTime.ParseExact("1959-03-29 16:10", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture),
+        Nationality = "Polska",
+        RoleId = 1
+      };
+      user2.Password = _passwordHasher.HashPassword(user2, "Marcingrafik1#");
+
+      var users = new List<User>();
+      users.Add(user);
+      users.Add(user1);
+      users.Add(user2);
+      return users;
     }
 
     private IEnumerable<Role> GetRoles()
     {
-      return null;
+      var roles = new List<Role>()
+      {
+        new Role()
+        {
+          RoleName = "User"
+        },
+        new Role()
+        {
+          RoleName = "Admin"
+        }
+      };
+
+      return roles;
     }
 
     private IEnumerable<CategoryFurniture> GetCategoryFurnitures()

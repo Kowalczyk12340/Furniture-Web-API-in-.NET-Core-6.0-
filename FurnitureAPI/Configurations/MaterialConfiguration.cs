@@ -9,7 +9,7 @@ namespace FurnitureAPI.Configurations
     public void Configure(EntityTypeBuilder<Material> builder)
     {
       builder.ToTable("Materials", "Furniture");
-      builder.HasKey(e => e.IdMaterial);
+      builder.HasKey(e => e.MaterialId);
       builder.Property(u => u.MaterialName)
         .IsRequired()
         .HasMaxLength(50);

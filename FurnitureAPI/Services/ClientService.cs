@@ -29,7 +29,7 @@ namespace FurnitureAPI.Services.Interfaces
       var client = _mapper.Map<Client>(dto);
       await _dbContext.Clients.AddAsync(client);
       await _dbContext.SaveChangesAsync();
-      return client.IdClient;
+      return client.ClientId;
     }
 
     public async Task Delete(int id)
@@ -37,7 +37,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogWarning($"It will be deleted client with {id}");
       var client = await _dbContext
         .Clients
-        .FirstOrDefaultAsync(x => x.IdClient == id);
+        .FirstOrDefaultAsync(x => x.ClientId == id);
 
       if(client is null)
       {
@@ -66,7 +66,7 @@ namespace FurnitureAPI.Services.Interfaces
 
       var client = await _dbContext
         .Clients
-        .FirstOrDefaultAsync(x => x.IdClient == id);
+        .FirstOrDefaultAsync(x => x.ClientId == id);
 
       if(client is null)
       {
@@ -79,7 +79,7 @@ namespace FurnitureAPI.Services.Interfaces
 
     public string SaveToCsv(IEnumerable<ClientDto> components)
     {
-      var headers = "IdClient;ClientName;ClientSurname;ClientPesel;ClientPhone;ClientEmail;ClientTown;ClientStreet;ClientNumberHome;ClientPostPlace;ClientPostalCode;ClientInterested";
+      var headers = "ClientId;ClientName;ClientSurname;ClientPesel;ClientPhone;ClientEmail;ClientTown;ClientStreet;ClientNumberHome;ClientPostPlace;ClientPostalCode;ClientInterested";
       var csv = new StringBuilder(headers);
 
       csv.Append(Environment.NewLine);
@@ -100,7 +100,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogInformation($"Edit client with {id}");
       var client = await _dbContext
         .Clients
-        .FirstOrDefaultAsync(x => x.IdClient == id);
+        .FirstOrDefaultAsync(x => x.ClientId == id);
 
       if(client is null)
       {

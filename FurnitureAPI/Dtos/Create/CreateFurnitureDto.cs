@@ -9,7 +9,7 @@
     public double FurnitureHeight { get; set; }
     public double FurnitureDepth { get; set; }
     public string FurnitureDescription { get; set; }
-    public int IdOrder { get; set; }
-    public int IdCategoryFurniture { get; set; }
+    public int OrderId { get; set; }
+    public int CategoryFurnitureId { get; set; }
   }
 }

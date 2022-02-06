@@ -28,7 +28,7 @@ namespace FurnitureAPI.Services.Interfaces
       var order = _mapper.Map<Order>(dto);
       await _dbContext.Orders.AddAsync(order);
       await _dbContext.SaveChangesAsync();
-      return order.IdOrder;
+      return order.OrderId;
     }
 
     public async Task Delete(int id)
@@ -40,7 +40,7 @@ namespace FurnitureAPI.Services.Interfaces
         .Include(x => x.Client)
         .Include(x => x.Employee)
         .Include(x => x.StatusOrder)
-        .FirstOrDefaultAsync(x => x.IdOrder == id);
+        .FirstOrDefaultAsync(x => x.OrderId == id);
 
       if(order is null)
       {
@@ -73,7 +73,7 @@ namespace FurnitureAPI.Services.Interfaces
         .Include(x => x.Client)
         .Include(x => x.Employee)
         .Include(x => x.StatusOrder)
-        .FirstOrDefaultAsync(x => x.IdOrder == id);
+        .FirstOrDefaultAsync(x => x.OrderId == id);
 
       if(order is null)
       {
@@ -87,7 +87,7 @@ namespace FurnitureAPI.Services.Interfaces
     public string SaveToCsv(IEnumerable<OrderDto> components)
     {
       _logger.LogInformation($"Save to csv file");
-      var headers = "IdOrder;IdClient;IdEmployee;IdStatusOrder;OrderCode;OrderDateSubmission;OrderDateRealization;OrderDeadlineRealization;OrderPrePayment;OrderPayment;OrderInfo;";
+      var headers = "OrderId;IdClient;IdEmployee;IdStatusOrder;OrderCode;OrderDateSubmission;OrderDateRealization;OrderDeadlineRealization;OrderPrePayment;OrderPayment;OrderInfo;";
       var csv = new StringBuilder(headers);
 
       csv.Append(Environment.NewLine);
@@ -111,7 +111,7 @@ namespace FurnitureAPI.Services.Interfaces
         .Include(x => x.Client)
         .Include(x => x.Employee)
         .Include(x => x.StatusOrder)
-        .FirstOrDefaultAsync(x => x.IdOrder == id);
+        .FirstOrDefaultAsync(x => x.OrderId == id);
 
       if(order is null)
       {

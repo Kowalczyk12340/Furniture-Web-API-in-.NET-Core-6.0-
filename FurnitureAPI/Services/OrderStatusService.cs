@@ -29,7 +29,7 @@ namespace FurnitureAPI.Services.Interfaces
       var orderStatus = _mapper.Map<StatusOrder>(dto);
       await _dbContext.StatusOrders.AddAsync(orderStatus);
       await _dbContext.SaveChangesAsync();
-      return orderStatus.IdStatusOrder;
+      return orderStatus.StatusOrderId;
     }
 
     public async Task Delete(int id)
@@ -38,7 +38,7 @@ namespace FurnitureAPI.Services.Interfaces
 
       var orderStatus = await _dbContext
         .StatusOrders
-        .FirstOrDefaultAsync(x => x.IdStatusOrder == id);
+        .FirstOrDefaultAsync(x => x.StatusOrderId == id);
 
       if(orderStatus is null)
       {
@@ -65,7 +65,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogInformation($"Editing status orders with {id}");
       var orderStatus = await _dbContext
         .StatusOrders
-        .FirstOrDefaultAsync(x => x.IdStatusOrder == id);
+        .FirstOrDefaultAsync(x => x.StatusOrderId == id);
 
       if(orderStatus is null)
       {
@@ -99,7 +99,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogInformation($"Edit order status with {id}");
       var orderStatus = await _dbContext
         .StatusOrders
-        .FirstOrDefaultAsync(x => x.IdStatusOrder == id);
+        .FirstOrDefaultAsync(x => x.StatusOrderId == id);
 
       if(orderStatus is null)
       {

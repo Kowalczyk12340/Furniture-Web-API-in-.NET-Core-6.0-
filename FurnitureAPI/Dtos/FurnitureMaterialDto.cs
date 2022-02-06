@@ -2,10 +2,10 @@
 {
   public class FurnitureMaterialDto
   {
-    public int IdFurnitureMaterial { get; set; }
-    public int IdFurniture { get; set; }
+    public int FurnitureMaterialId { get; set; }
+    public int FurnitureId { get; set; }
     public virtual FurnitureDto Furniture { get; set; }
-    public int IdMaterial { get; set; }
+    public int MaterialId { get; set; }
     public virtual MaterialDto Material { get; set; }
     public int FurnitureMaterialAmount { get; set; }
     public double FurnitureMaterialPrice { get; set; }
@@ -13,7 +13,7 @@
 
     public string GetExportObject()
     {
-      return $"{IdFurnitureMaterial};{IdFurniture};{IdMaterial};{FurnitureMaterialAmount};{FurnitureMaterialPrice};{FurnitureMaterialDescription};";
+      return $"{FurnitureMaterialId};{FurnitureId};{MaterialId};{FurnitureMaterialAmount};{FurnitureMaterialPrice};{FurnitureMaterialDescription};";
     }
   }
 }

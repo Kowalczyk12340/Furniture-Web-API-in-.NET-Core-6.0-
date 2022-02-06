@@ -9,8 +9,8 @@
     public double OrderPrePayment { get; set; }
     public double OrderPayment { get; set; }
     public string OrderInfo { get; set; }
-    public int IdClient { get; set; }
-    public int IdEmployee { get; set; }
-    public int IdStatusOrder { get; set; }
+    public int ClientId { get; set; }
+    public int EmployeeId { get; set; }
+    public int StatusOrderId { get; set; }
   }
 }

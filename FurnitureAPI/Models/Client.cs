@@ -2,7 +2,7 @@
 {
   public class Client : DomainEntity
   {
-    public int IdClient { get; set; }
+    public int ClientId { get; set; }
     public string ClientName { get; set; }
     public string ClientSurname { get; set; }
     public string ClientPesel { get; set; }

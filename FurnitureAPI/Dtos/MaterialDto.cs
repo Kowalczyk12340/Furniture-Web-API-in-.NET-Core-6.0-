@@ -2,8 +2,8 @@
 {
   public class MaterialDto
   {
-    public int IdMaterial { get; set; }
-    public int IdCategoryMaterial { get; set; }
+    public int MaterialId { get; set; }
+    public int CategoryMaterialId { get; set; }
     public virtual CategoryMaterialDto CategoryMaterial { get; set; }
     public string MaterialName { get; set; }
     public double MaterialPrice { get; set; }
@@ -13,7 +13,7 @@
 
     public string GetExportObject()
     {
-      return $"{IdMaterial};{IdCategoryMaterial};{MaterialName};{MaterialPrice};{MaterialUnit};{MaterialStockStatus};{MaterialDescription};";
+      return $"{MaterialId};{CategoryMaterialId};{MaterialName};{MaterialPrice};{MaterialUnit};{MaterialStockStatus};{MaterialDescription};";
     }
   }
 }

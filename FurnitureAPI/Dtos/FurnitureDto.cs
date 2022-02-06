@@ -2,10 +2,10 @@
 {
   public class FurnitureDto
   {
-    public int IdFurniture { get; set; }
-    public int IdOrder { get; set; }
+    public int FurnitureId { get; set; }
+    public int OrderId { get; set; }
     public virtual OrderDto Order { get; set; }
-    public int IdCategoryFurniture { get; set; }
+    public int CategoryFurnitureId { get; set; }
     public virtual CategoryFurnitureDto CategoryFurniture { get; set; }
     public string FurnitureName { get; set; }
     public double FurniturePrice { get; set; }
@@ -17,7 +17,7 @@
 
     public string GetExportObject()
     {
-      return $"{IdFurniture};{IdOrder};{IdCategoryFurniture};{FurnitureName};{FurniturePrice};{FurnitureUnit};{FurnitureWidth};{FurnitureHeight};{FurnitureDepth};{FurnitureDescription};";
+      return $"{FurnitureId};{OrderId};{CategoryFurnitureId};{FurnitureName};{FurniturePrice};{FurnitureUnit};{FurnitureWidth};{FurnitureHeight};{FurnitureDepth};{FurnitureDescription};";
     }
   }
 }

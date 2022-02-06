@@ -2,8 +2,8 @@
 {
   public class Material : DomainEntity
   {
-    public int IdMaterial { get; set; }
-    public int IdCategoryMaterial { get; set; }
+    public int MaterialId { get; set; }
+    public int CategoryMaterialId { get; set; }
     public virtual CategoryMaterial CategoryMaterial { get; set; }
     public string MaterialName { get; set; }
     public double MaterialPrice { get; set; }

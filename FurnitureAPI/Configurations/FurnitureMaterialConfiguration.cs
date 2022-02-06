@@ -9,9 +9,12 @@ namespace FurnitureAPI.Configurations
     public void Configure(EntityTypeBuilder<FurnitureMaterial> builder)
     {
       builder.ToTable("FurnitureMaterials", "Furniture");
-      builder.HasKey(e => e.IdFurnitureMaterial);
+      builder.HasKey(e => e.FurnitureMaterialId);
 
-      builder.Property(u => u.IdFurniture)
+      builder.Property(u => u.FurnitureId)
+        .IsRequired();
+
+      builder.Property(u => u.MaterialId)
         .IsRequired();
     }
   }

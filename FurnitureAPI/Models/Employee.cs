@@ -2,7 +2,7 @@
 {
   public class Employee : DomainEntity
   {
-    public int IdEmployee { get; set; }
+    public int EmployeeId { get; set; }
     public string EmployeeName { get; set; }
     public string EmployeeSurname { get; set; }
     public string EmployeeIsDelivered { get; set; }

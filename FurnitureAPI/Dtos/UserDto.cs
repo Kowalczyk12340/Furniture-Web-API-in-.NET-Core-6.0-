@@ -2,7 +2,7 @@
 {
   public class UserDto
   {
-    public int IdUser { get; set; }
+    public int UserId { get; set; }
     public string UserFirstName { get; set; }
     public string LastName { get; set; }
     public bool? IsActive { get; set; }
@@ -14,7 +14,7 @@
 
     public string GetExportObject()
     {
-      return $"{IdUser};{UserFirstName};{LastName};{IsActive};{DateOfBirth}{Login};{Nationality};{RoleName}";
+      return $"{UserId};{UserFirstName};{LastName};{IsActive};{DateOfBirth}{Login};{Nationality};{RoleName}";
     }
   }
 }

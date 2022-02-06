@@ -2,13 +2,13 @@
 {
   public class CategoryFurnitureDto
   {
-    public int IdCategoryFurniture { get; set; }
+    public int CategoryFurnitureId { get; set; }
     public string CategoryFurnitureName { get; set; }
     public string CategoryFurnitureDescription { get; set; }
 
     public string GetExportObject()
     {
-      return $"{IdCategoryFurniture};{CategoryFurnitureName};{CategoryFurnitureDescription};";
+      return $"{CategoryFurnitureId};{CategoryFurnitureName};{CategoryFurnitureDescription};";
     }
   }
 }

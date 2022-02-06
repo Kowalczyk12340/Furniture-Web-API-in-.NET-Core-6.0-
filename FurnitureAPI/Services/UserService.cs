@@ -39,7 +39,7 @@ namespace FurnitureAPI.Services.Interfaces
       var user = await _dbContext
         .Users
         .Include(u => u.Role)
-        .FirstOrDefaultAsync(x => x.IdUser == id);
+        .FirstOrDefaultAsync(x => x.UserId == id);
 
       if(user is null)
       {
@@ -71,7 +71,7 @@ namespace FurnitureAPI.Services.Interfaces
 
       var claims = new List<Claim>()
       {
-                new Claim(ClaimTypes.NameIdentifier, user.IdUser.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Name, $"{user.UserFirstName}"),
                 new Claim(ClaimTypes.Role, $"{user.Role.RoleName}"),
                 new Claim(ClaimTypes.Country, $"{user.Nationality}"),
@@ -114,7 +114,7 @@ namespace FurnitureAPI.Services.Interfaces
       var user = await _dbContext
         .Users
         .Include(u => u.Role)
-        .FirstOrDefaultAsync(x => x.IdRole == id);
+        .FirstOrDefaultAsync(x => x.UserId == id);
 
       if(user is null)
       {
@@ -134,7 +134,7 @@ namespace FurnitureAPI.Services.Interfaces
         UserFirstName = dto.UserFirstName,
         LastName = dto.LastName,
         Nationality = dto.Nationality,
-        IdRole = dto.IdRole,
+        RoleId = dto.RoleId,
       };
 
       var hashedPassword = _passwordHasher.HashPassword(newUser, dto.Password);
@@ -170,7 +170,7 @@ namespace FurnitureAPI.Services.Interfaces
       var user = await _dbContext
         .Users
         .Include(u => u.Role)
-        .FirstOrDefaultAsync(x => x.IdRole == id);
+        .FirstOrDefaultAsync(x => x.RoleId == id);
 
       if(user is null)
       {

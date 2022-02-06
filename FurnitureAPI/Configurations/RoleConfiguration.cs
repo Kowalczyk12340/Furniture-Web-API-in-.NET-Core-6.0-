@@ -9,7 +9,7 @@ namespace FurnitureAPI.Configurations
     public void Configure(EntityTypeBuilder<Role> builder)
     {
       builder.ToTable("Roles", "Furniture");
-      builder.HasKey(e => e.IdRole);
+      builder.HasKey(e => e.RoleId);
       builder.Property(u => u.RoleName)
         .IsRequired()
         .HasMaxLength(40);

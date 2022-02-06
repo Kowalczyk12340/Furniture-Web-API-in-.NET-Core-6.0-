@@ -28,7 +28,7 @@ namespace FurnitureAPI.Services
       var role = _mapper.Map<Role>(dto);
       await _dbContext.Roles.AddAsync(role);
       await _dbContext.SaveChangesAsync();
-      return role.IdRole;
+      return role.RoleId;
     }
 
     public async Task Delete(int id)
@@ -36,7 +36,7 @@ namespace FurnitureAPI.Services
       _logger.LogWarning($"It will be deleted role with id: {id}");
 
       var role = await _dbContext.Roles
-        .FirstOrDefaultAsync(x => x.IdRole == id);
+        .FirstOrDefaultAsync(x => x.RoleId == id);
 
       if(role is null)
       {
@@ -62,7 +62,7 @@ namespace FurnitureAPI.Services
       _logger.LogInformation($"Display role with id: {id}");
       var role = await _dbContext
         .Roles
-        .FirstOrDefaultAsync(x => x.IdRole == id);
+        .FirstOrDefaultAsync(x => x.RoleId == id);
 
       if(role is null)
       {
@@ -78,7 +78,7 @@ namespace FurnitureAPI.Services
       _logger.LogInformation($"Edit role with id: {id}");
       var role = await _dbContext
         .Roles
-        .FirstOrDefaultAsync(x => x.IdRole == id);
+        .FirstOrDefaultAsync(x => x.RoleId == id);
 
       if(role is null)
       {

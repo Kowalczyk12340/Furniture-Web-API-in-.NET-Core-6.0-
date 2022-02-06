@@ -2,10 +2,10 @@
 {
   public class FurnitureMaterial : DomainEntity
   {
-    public int IdFurnitureMaterial { get; set; }
-    public int IdFurniture { get; set; }
+    public int FurnitureMaterialId { get; set; }
+    public int FurnitureId { get; set; }
     public virtual Furniture Furniture { get; set; }
-    public int IdMaterial { get; set; }
+    public int MaterialId { get; set; }
     public virtual Material Material { get; set; }
     public int FurnitureMaterialAmount { get; set; }
     public double FurnitureMaterialPrice { get; set; }

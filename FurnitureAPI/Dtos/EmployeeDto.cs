@@ -2,7 +2,7 @@
 {
   public class EmployeeDto
   {
-    public int IdEmployee { get; set; }
+    public int EmployeeId { get; set; }
     public string EmployeeName { get; set; }
     public string EmployeeSurname { get; set; }
     public string EmployeeIsDelivered { get; set; }
@@ -12,7 +12,7 @@
 
     public string GetExportObject()
     {
-      return $"{IdEmployee};{EmployeeName};{EmployeeSurname};{EmployeeIsDelivered};{EmployeeNumberHome};{EmployeeEmail};{EmployeeSeniority};";
+      return $"{EmployeeId};{EmployeeName};{EmployeeSurname};{EmployeeIsDelivered};{EmployeeNumberHome};{EmployeeEmail};{EmployeeSeniority};";
     }
   }
 }

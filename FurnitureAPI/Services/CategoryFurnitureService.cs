@@ -29,22 +29,22 @@ namespace FurnitureAPI.Services.Interfaces
       var categoryFurniture = _mapper.Map<CategoryFurniture>(dto);
       await _dbContext.CategoryFurnitures.AddAsync(categoryFurniture);
       await _dbContext.SaveChangesAsync();
-      return categoryFurniture.IdCategoryFurniture;
+      return categoryFurniture.CategoryFurnitureId;
     }
 
     public async Task Delete(int id)
     {
-      _logger.LogWarning($"It will be deleted category material with {id}");
-      var categoryMaterial = await _dbContext
-        .CategoryMaterials
-        .FirstOrDefaultAsync(x => x.IdCategoryMaterial == id);
+      _logger.LogWarning($"It will be deleted category furniture with {id}");
+      var categoryFurniture = await _dbContext
+        .CategoryFurnitures
+        .FirstOrDefaultAsync(x => x.CategoryFurnitureId == id);
 
-      if(categoryMaterial is null)
+      if(categoryFurniture is null)
       {
-        throw new NotFoundException("Category material is not found");
+        throw new NotFoundException("Category furniture is not found");
       }
 
-      _dbContext.CategoryMaterials.Remove(categoryMaterial);
+      _dbContext.CategoryFurnitures.Remove(categoryFurniture);
       await _dbContext.SaveChangesAsync();
     }
 
@@ -53,7 +53,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogInformation($"Display all the category furnitures");
 
       var categoryFurnitures = await _dbContext
-        .CategoryMaterials
+        .CategoryFurnitures
         .ToListAsync();
 
       var categoryFurnitureDtos = _mapper.Map<List<CategoryFurnitureDto>>(categoryFurnitures);
@@ -66,7 +66,7 @@ namespace FurnitureAPI.Services.Interfaces
 
       var categoryFurniture = await _dbContext
         .CategoryFurnitures
-        .FirstOrDefaultAsync(x => x.IdCategoryFurniture == id);
+        .FirstOrDefaultAsync(x => x.CategoryFurnitureId == id);
 
       var result = _mapper.Map<CategoryFurnitureDto>(categoryFurniture);
       return result;
@@ -96,7 +96,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogInformation($"Edit category furniture with {id}");
       var categoryFurniture = await _dbContext
         .CategoryFurnitures
-        .FirstOrDefaultAsync(x => x.IdCategoryFurniture == id);
+        .FirstOrDefaultAsync(x => x.CategoryFurnitureId == id);
 
       if(categoryFurniture is null)
       {

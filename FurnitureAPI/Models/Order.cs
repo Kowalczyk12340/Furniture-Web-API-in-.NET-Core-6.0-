@@ -2,12 +2,12 @@
 {
   public class Order : DomainEntity
   {
-    public int IdOrder { get; set; }
-    public int IdClient { get; set; }
+    public int OrderId { get; set; }
+    public int ClientId { get; set; }
     public virtual Client Client { get; set; }
-    public int IdEmployee { get; set; }
+    public int EmployeeId { get; set; }
     public virtual Employee Employee { get; set; }
-    public int IdStatusOrder { get; set; }
+    public int StatusOrderId { get; set; }
     public virtual StatusOrder StatusOrder { get; set; }
     public string OrderCode { get; set; }
     public DateTime OrderDateSubmission { get; set; }

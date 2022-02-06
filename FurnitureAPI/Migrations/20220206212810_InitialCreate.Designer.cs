@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FurnitureAPI.Migrations
 {
     [DbContext(typeof(FurnitureDbContext))]
-    [Migration("20220204232758_InitialCreate")]
+    [Migration("20220206212810_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,11 +43,11 @@ namespace FurnitureAPI.Migrations
 
             modelBuilder.Entity("FurnitureAPI.Models.CategoryFurniture", b =>
                 {
-                    b.Property<int>("IdCategoryFurniture")
+                    b.Property<int>("CategoryFurnitureId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCategoryFurniture"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryFurnitureId"), 1L, 1);
 
                     b.Property<string>("CategoryFurnitureDescription")
                         .IsRequired()
@@ -58,18 +58,18 @@ namespace FurnitureAPI.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.HasKey("IdCategoryFurniture");
+                    b.HasKey("CategoryFurnitureId");
 
                     b.ToTable("CategoryFurnitures", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.CategoryMaterial", b =>
                 {
-                    b.Property<int>("IdCategoryMaterial")
+                    b.Property<int>("CategoryMaterialId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCategoryMaterial"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryMaterialId"), 1L, 1);
 
                     b.Property<string>("CategoryMaterialDescription")
                         .IsRequired()
@@ -80,18 +80,18 @@ namespace FurnitureAPI.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.HasKey("IdCategoryMaterial");
+                    b.HasKey("CategoryMaterialId");
 
                     b.ToTable("CategoryMaterials", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.Client", b =>
                 {
-                    b.Property<int>("IdClient")
+                    b.Property<int>("ClientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdClient"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"), 1L, 1);
 
                     b.Property<string>("ClientEmail")
                         .IsRequired()
@@ -140,18 +140,18 @@ namespace FurnitureAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdClient");
+                    b.HasKey("ClientId");
 
                     b.ToTable("Clients", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.Employee", b =>
                 {
-                    b.Property<int>("IdEmployee")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEmployee"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
 
                     b.Property<string>("EmployeeEmail")
                         .IsRequired()
@@ -179,20 +179,20 @@ namespace FurnitureAPI.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.HasKey("IdEmployee");
+                    b.HasKey("EmployeeId");
 
                     b.ToTable("Employees", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.Furniture", b =>
                 {
-                    b.Property<int>("IdFurniture")
+                    b.Property<int>("FurnitureId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFurniture"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FurnitureId"), 1L, 1);
 
-                    b.Property<int>("CategoryFurnitureIdCategoryFurniture")
+                    b.Property<int>("CategoryFurnitureId")
                         .HasColumnType("int");
 
                     b.Property<double>("FurnitureDepth")
@@ -220,33 +220,27 @@ namespace FurnitureAPI.Migrations
                     b.Property<double>("FurnitureWidth")
                         .HasColumnType("float");
 
-                    b.Property<int>("IdCategoryFurniture")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdOrder")
-                        .HasColumnType("int");
+                    b.HasKey("FurnitureId");
 
-                    b.Property<int>("OrderIdOrder")
-                        .HasColumnType("int");
+                    b.HasIndex("CategoryFurnitureId");
 
-                    b.HasKey("IdFurniture");
-
-                    b.HasIndex("CategoryFurnitureIdCategoryFurniture");
-
-                    b.HasIndex("OrderIdOrder");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Furnitures", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.FurnitureMaterial", b =>
                 {
-                    b.Property<int>("IdFurnitureMaterial")
+                    b.Property<int>("FurnitureMaterialId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFurnitureMaterial"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FurnitureMaterialId"), 1L, 1);
 
-                    b.Property<int>("FurnitureIdFurniture")
+                    b.Property<int>("FurnitureId")
                         .HasColumnType("int");
 
                     b.Property<int>("FurnitureMaterialAmount")
@@ -259,36 +253,27 @@ namespace FurnitureAPI.Migrations
                     b.Property<double>("FurnitureMaterialPrice")
                         .HasColumnType("float");
 
-                    b.Property<int>("IdFurniture")
+                    b.Property<int>("MaterialId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdMaterial")
-                        .HasColumnType("int");
+                    b.HasKey("FurnitureMaterialId");
 
-                    b.Property<int>("MaterialIdMaterial")
-                        .HasColumnType("int");
+                    b.HasIndex("FurnitureId");
 
-                    b.HasKey("IdFurnitureMaterial");
-
-                    b.HasIndex("FurnitureIdFurniture");
-
-                    b.HasIndex("MaterialIdMaterial");
+                    b.HasIndex("MaterialId");
 
                     b.ToTable("FurnitureMaterials", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.Material", b =>
                 {
-                    b.Property<int>("IdMaterial")
+                    b.Property<int>("MaterialId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMaterial"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaterialId"), 1L, 1);
 
-                    b.Property<int>("CategoryMaterialIdCategoryMaterial")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdCategoryMaterial")
+                    b.Property<int>("CategoryMaterialId")
                         .HasColumnType("int");
 
                     b.Property<string>("MaterialDescription")
@@ -312,34 +297,25 @@ namespace FurnitureAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdMaterial");
+                    b.HasKey("MaterialId");
 
-                    b.HasIndex("CategoryMaterialIdCategoryMaterial");
+                    b.HasIndex("CategoryMaterialId");
 
                     b.ToTable("Materials", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.Order", b =>
                 {
-                    b.Property<int>("IdOrder")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdOrder"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
-                    b.Property<int>("ClientIdClient")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EmployeeIdEmployee")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdClient")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdEmployee")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdStatusOrder")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<string>("OrderCode")
@@ -353,7 +329,7 @@ namespace FurnitureAPI.Migrations
                     b.Property<DateTime>("OrderDateSubmission")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 2, 4, 23, 27, 57, 963, DateTimeKind.Utc).AddTicks(1305));
+                        .HasDefaultValue(new DateTime(2022, 2, 6, 21, 28, 10, 190, DateTimeKind.Utc).AddTicks(754));
 
                     b.Property<DateTime>("OrderDeadlineRealization")
                         .HasColumnType("datetime2");
@@ -368,45 +344,45 @@ namespace FurnitureAPI.Migrations
                     b.Property<double>("OrderPrePayment")
                         .HasColumnType("float");
 
-                    b.Property<int>("StatusOrderIdStatusOrder")
+                    b.Property<int>("StatusOrderId")
                         .HasColumnType("int");
 
-                    b.HasKey("IdOrder");
+                    b.HasKey("OrderId");
 
-                    b.HasIndex("ClientIdClient");
+                    b.HasIndex("ClientId");
 
-                    b.HasIndex("EmployeeIdEmployee");
+                    b.HasIndex("EmployeeId");
 
-                    b.HasIndex("StatusOrderIdStatusOrder");
+                    b.HasIndex("StatusOrderId");
 
                     b.ToTable("Orders", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.Role", b =>
                 {
-                    b.Property<int>("IdRole")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRole"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
 
                     b.Property<string>("RoleName")
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.HasKey("IdRole");
+                    b.HasKey("RoleId");
 
                     b.ToTable("Roles", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.StatusOrder", b =>
                 {
-                    b.Property<int>("IdStatusOrder")
+                    b.Property<int>("StatusOrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdStatusOrder"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusOrderId"), 1L, 1);
 
                     b.Property<string>("StatusOrderDescription")
                         .IsRequired()
@@ -417,24 +393,21 @@ namespace FurnitureAPI.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.HasKey("IdStatusOrder");
+                    b.HasKey("StatusOrderId");
 
                     b.ToTable("StatusOrders", "Furniture");
                 });
 
             modelBuilder.Entity("FurnitureAPI.Models.User", b =>
                 {
-                    b.Property<int>("IdUser")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUser"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("IdRole")
-                        .HasColumnType("int");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
@@ -455,10 +428,10 @@ namespace FurnitureAPI.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
-                    b.Property<int>("RoleIdRole")
+                    b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserFirstName")
@@ -466,9 +439,9 @@ namespace FurnitureAPI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("IdUser");
+                    b.HasKey("UserId");
 
-                    b.HasIndex("RoleIdRole");
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users", "Furniture");
                 });
@@ -477,13 +450,13 @@ namespace FurnitureAPI.Migrations
                 {
                     b.HasOne("FurnitureAPI.Models.CategoryFurniture", "CategoryFurniture")
                         .WithMany()
-                        .HasForeignKey("CategoryFurnitureIdCategoryFurniture")
+                        .HasForeignKey("CategoryFurnitureId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FurnitureAPI.Models.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderIdOrder")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -496,13 +469,13 @@ namespace FurnitureAPI.Migrations
                 {
                     b.HasOne("FurnitureAPI.Models.Furniture", "Furniture")
                         .WithMany()
-                        .HasForeignKey("FurnitureIdFurniture")
+                        .HasForeignKey("FurnitureId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FurnitureAPI.Models.Material", "Material")
                         .WithMany()
-                        .HasForeignKey("MaterialIdMaterial")
+                        .HasForeignKey("MaterialId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -515,7 +488,7 @@ namespace FurnitureAPI.Migrations
                 {
                     b.HasOne("FurnitureAPI.Models.CategoryMaterial", "CategoryMaterial")
                         .WithMany()
-                        .HasForeignKey("CategoryMaterialIdCategoryMaterial")
+                        .HasForeignKey("CategoryMaterialId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -526,19 +499,19 @@ namespace FurnitureAPI.Migrations
                 {
                     b.HasOne("FurnitureAPI.Models.Client", "Client")
                         .WithMany()
-                        .HasForeignKey("ClientIdClient")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FurnitureAPI.Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeIdEmployee")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FurnitureAPI.Models.StatusOrder", "StatusOrder")
                         .WithMany()
-                        .HasForeignKey("StatusOrderIdStatusOrder")
+                        .HasForeignKey("StatusOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -553,7 +526,7 @@ namespace FurnitureAPI.Migrations
                 {
                     b.HasOne("FurnitureAPI.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleIdRole")
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

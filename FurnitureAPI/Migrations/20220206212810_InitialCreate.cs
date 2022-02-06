@@ -30,14 +30,14 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdCategoryFurniture = table.Column<int>(type: "int", nullable: false)
+                    CategoryFurnitureId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryFurnitureName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     CategoryFurnitureDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryFurnitures", x => x.IdCategoryFurniture);
+                    table.PrimaryKey("PK_CategoryFurnitures", x => x.CategoryFurnitureId);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,14 +45,14 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdCategoryMaterial = table.Column<int>(type: "int", nullable: false)
+                    CategoryMaterialId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryMaterialName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     CategoryMaterialDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryMaterials", x => x.IdCategoryMaterial);
+                    table.PrimaryKey("PK_CategoryMaterials", x => x.CategoryMaterialId);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,7 +60,7 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdClient = table.Column<int>(type: "int", nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ClientSurname = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
@@ -76,7 +76,7 @@ namespace FurnitureAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.IdClient);
+                    table.PrimaryKey("PK_Clients", x => x.ClientId);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,7 +84,7 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdEmployee = table.Column<int>(type: "int", nullable: false)
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     EmployeeSurname = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
@@ -95,7 +95,7 @@ namespace FurnitureAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.IdEmployee);
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,13 +103,13 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdRole = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Roles", x => x.IdRole);
+                    table.PrimaryKey("PK_Roles", x => x.RoleId);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,14 +117,14 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdStatusOrder = table.Column<int>(type: "int", nullable: false)
+                    StatusOrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StatusOrderName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     StatusOrderDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StatusOrders", x => x.IdStatusOrder);
+                    table.PrimaryKey("PK_StatusOrders", x => x.StatusOrderId);
                 });
 
             migrationBuilder.CreateTable(
@@ -132,10 +132,9 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdMaterial = table.Column<int>(type: "int", nullable: false)
+                    MaterialId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdCategoryMaterial = table.Column<int>(type: "int", nullable: false),
-                    CategoryMaterialIdCategoryMaterial = table.Column<int>(type: "int", nullable: false),
+                    CategoryMaterialId = table.Column<int>(type: "int", nullable: false),
                     MaterialName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     MaterialPrice = table.Column<double>(type: "float", nullable: false, defaultValue: 0.0),
                     MaterialUnit = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -144,13 +143,13 @@ namespace FurnitureAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Materials", x => x.IdMaterial);
+                    table.PrimaryKey("PK_Materials", x => x.MaterialId);
                     table.ForeignKey(
-                        name: "FK_Materials_CategoryMaterials_CategoryMaterialIdCategoryMaterial",
-                        column: x => x.CategoryMaterialIdCategoryMaterial,
+                        name: "FK_Materials_CategoryMaterials_CategoryMaterialId",
+                        column: x => x.CategoryMaterialId,
                         principalSchema: "Furniture",
                         principalTable: "CategoryMaterials",
-                        principalColumn: "IdCategoryMaterial",
+                        principalColumn: "CategoryMaterialId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -159,27 +158,26 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdUser = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserFirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Login = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    IdRole = table.Column<int>(type: "int", nullable: false),
-                    RoleIdRole = table.Column<int>(type: "int", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Nationality = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.IdUser);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_Users_Roles_RoleIdRole",
-                        column: x => x.RoleIdRole,
+                        name: "FK_Users_Roles_RoleId",
+                        column: x => x.RoleId,
                         principalSchema: "Furniture",
                         principalTable: "Roles",
-                        principalColumn: "IdRole",
+                        principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -188,16 +186,13 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdOrder = table.Column<int>(type: "int", nullable: false)
+                    OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdClient = table.Column<int>(type: "int", nullable: false),
-                    ClientIdClient = table.Column<int>(type: "int", nullable: false),
-                    IdEmployee = table.Column<int>(type: "int", nullable: false),
-                    EmployeeIdEmployee = table.Column<int>(type: "int", nullable: false),
-                    IdStatusOrder = table.Column<int>(type: "int", nullable: false),
-                    StatusOrderIdStatusOrder = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    StatusOrderId = table.Column<int>(type: "int", nullable: false),
                     OrderCode = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    OrderDateSubmission = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2022, 2, 4, 23, 27, 57, 963, DateTimeKind.Utc).AddTicks(1305)),
+                    OrderDateSubmission = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2022, 2, 6, 21, 28, 10, 190, DateTimeKind.Utc).AddTicks(754)),
                     OrderDateRealization = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderDeadlineRealization = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderPrePayment = table.Column<double>(type: "float", nullable: false),
@@ -206,27 +201,27 @@ namespace FurnitureAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.IdOrder);
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_Orders_Clients_ClientIdClient",
-                        column: x => x.ClientIdClient,
+                        name: "FK_Orders_Clients_ClientId",
+                        column: x => x.ClientId,
                         principalSchema: "Furniture",
                         principalTable: "Clients",
-                        principalColumn: "IdClient",
+                        principalColumn: "ClientId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Orders_Employees_EmployeeIdEmployee",
-                        column: x => x.EmployeeIdEmployee,
+                        name: "FK_Orders_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalSchema: "Furniture",
                         principalTable: "Employees",
-                        principalColumn: "IdEmployee",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Orders_StatusOrders_StatusOrderIdStatusOrder",
-                        column: x => x.StatusOrderIdStatusOrder,
+                        name: "FK_Orders_StatusOrders_StatusOrderId",
+                        column: x => x.StatusOrderId,
                         principalSchema: "Furniture",
                         principalTable: "StatusOrders",
-                        principalColumn: "IdStatusOrder",
+                        principalColumn: "StatusOrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -235,12 +230,10 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdFurniture = table.Column<int>(type: "int", nullable: false)
+                    FurnitureId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdOrder = table.Column<int>(type: "int", nullable: false),
-                    OrderIdOrder = table.Column<int>(type: "int", nullable: false),
-                    IdCategoryFurniture = table.Column<int>(type: "int", nullable: false),
-                    CategoryFurnitureIdCategoryFurniture = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    CategoryFurnitureId = table.Column<int>(type: "int", nullable: false),
                     FurnitureName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FurniturePrice = table.Column<double>(type: "float", nullable: false),
                     FurnitureUnit = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -251,20 +244,20 @@ namespace FurnitureAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Furnitures", x => x.IdFurniture);
+                    table.PrimaryKey("PK_Furnitures", x => x.FurnitureId);
                     table.ForeignKey(
-                        name: "FK_Furnitures_CategoryFurnitures_CategoryFurnitureIdCategoryFurniture",
-                        column: x => x.CategoryFurnitureIdCategoryFurniture,
+                        name: "FK_Furnitures_CategoryFurnitures_CategoryFurnitureId",
+                        column: x => x.CategoryFurnitureId,
                         principalSchema: "Furniture",
                         principalTable: "CategoryFurnitures",
-                        principalColumn: "IdCategoryFurniture",
+                        principalColumn: "CategoryFurnitureId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Furnitures_Orders_OrderIdOrder",
-                        column: x => x.OrderIdOrder,
+                        name: "FK_Furnitures_Orders_OrderId",
+                        column: x => x.OrderId,
                         principalSchema: "Furniture",
                         principalTable: "Orders",
-                        principalColumn: "IdOrder",
+                        principalColumn: "OrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -273,88 +266,86 @@ namespace FurnitureAPI.Migrations
                 schema: "Furniture",
                 columns: table => new
                 {
-                    IdFurnitureMaterial = table.Column<int>(type: "int", nullable: false)
+                    FurnitureMaterialId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdFurniture = table.Column<int>(type: "int", nullable: false),
-                    FurnitureIdFurniture = table.Column<int>(type: "int", nullable: false),
-                    IdMaterial = table.Column<int>(type: "int", nullable: false),
-                    MaterialIdMaterial = table.Column<int>(type: "int", nullable: false),
+                    FurnitureId = table.Column<int>(type: "int", nullable: false),
+                    MaterialId = table.Column<int>(type: "int", nullable: false),
                     FurnitureMaterialAmount = table.Column<int>(type: "int", nullable: false),
                     FurnitureMaterialPrice = table.Column<double>(type: "float", nullable: false),
                     FurnitureMaterialDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FurnitureMaterials", x => x.IdFurnitureMaterial);
+                    table.PrimaryKey("PK_FurnitureMaterials", x => x.FurnitureMaterialId);
                     table.ForeignKey(
-                        name: "FK_FurnitureMaterials_Furnitures_FurnitureIdFurniture",
-                        column: x => x.FurnitureIdFurniture,
+                        name: "FK_FurnitureMaterials_Furnitures_FurnitureId",
+                        column: x => x.FurnitureId,
                         principalSchema: "Furniture",
                         principalTable: "Furnitures",
-                        principalColumn: "IdFurniture",
+                        principalColumn: "FurnitureId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FurnitureMaterials_Materials_MaterialIdMaterial",
-                        column: x => x.MaterialIdMaterial,
+                        name: "FK_FurnitureMaterials_Materials_MaterialId",
+                        column: x => x.MaterialId,
                         principalSchema: "Furniture",
                         principalTable: "Materials",
-                        principalColumn: "IdMaterial",
+                        principalColumn: "MaterialId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_FurnitureMaterials_FurnitureIdFurniture",
+                name: "IX_FurnitureMaterials_FurnitureId",
                 schema: "Furniture",
                 table: "FurnitureMaterials",
-                column: "FurnitureIdFurniture");
+                column: "FurnitureId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FurnitureMaterials_MaterialIdMaterial",
+                name: "IX_FurnitureMaterials_MaterialId",
                 schema: "Furniture",
                 table: "FurnitureMaterials",
-                column: "MaterialIdMaterial");
+                column: "MaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Furnitures_CategoryFurnitureIdCategoryFurniture",
+                name: "IX_Furnitures_CategoryFurnitureId",
                 schema: "Furniture",
                 table: "Furnitures",
-                column: "CategoryFurnitureIdCategoryFurniture");
+                column: "CategoryFurnitureId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Furnitures_OrderIdOrder",
+                name: "IX_Furnitures_OrderId",
                 schema: "Furniture",
                 table: "Furnitures",
-                column: "OrderIdOrder");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Materials_CategoryMaterialIdCategoryMaterial",
+                name: "IX_Materials_CategoryMaterialId",
                 schema: "Furniture",
                 table: "Materials",
-                column: "CategoryMaterialIdCategoryMaterial");
+                column: "CategoryMaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_ClientIdClient",
+                name: "IX_Orders_ClientId",
                 schema: "Furniture",
                 table: "Orders",
-                column: "ClientIdClient");
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_EmployeeIdEmployee",
+                name: "IX_Orders_EmployeeId",
                 schema: "Furniture",
                 table: "Orders",
-                column: "EmployeeIdEmployee");
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_StatusOrderIdStatusOrder",
+                name: "IX_Orders_StatusOrderId",
                 schema: "Furniture",
                 table: "Orders",
-                column: "StatusOrderIdStatusOrder");
+                column: "StatusOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_RoleIdRole",
+                name: "IX_Users_RoleId",
                 schema: "Furniture",
                 table: "Users",
-                column: "RoleIdRole");
+                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

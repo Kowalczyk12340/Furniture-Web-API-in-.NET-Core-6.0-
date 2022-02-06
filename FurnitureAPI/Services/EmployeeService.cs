@@ -29,7 +29,7 @@ namespace FurnitureAPI.Services.Interfaces
       var employee = _mapper.Map<Employee>(dto);
       await _dbContext.Employees.AddAsync(employee);
       await _dbContext.SaveChangesAsync();
-      return employee.IdEmployee;
+      return employee.EmployeeId;
     }
 
     public async Task Delete(int id)
@@ -37,7 +37,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogWarning($"It will be deleted employee with {id}");
       var employee = await _dbContext
         .Employees
-        .FirstOrDefaultAsync(x => x.IdEmployee == id);
+        .FirstOrDefaultAsync(x => x.EmployeeId == id);
 
       if(employee is null)
       {
@@ -66,7 +66,7 @@ namespace FurnitureAPI.Services.Interfaces
 
       var employee = await _dbContext
         .Employees
-        .FirstOrDefaultAsync(x => x.IdEmployee == id);
+        .FirstOrDefaultAsync(x => x.EmployeeId == id);
 
       if(employee is null)
       {
@@ -79,7 +79,7 @@ namespace FurnitureAPI.Services.Interfaces
 
     public string SaveToCsv(IEnumerable<EmployeeDto> components)
     {
-      var headers = "IdEmployee;EmployeeName;EmployeeSurname;EmployeeIsDelivered;EmployeeNumberHome;EmployeeEmail;EmployeeSeniority";
+      var headers = "EmployeeId;EmployeeName;EmployeeSurname;EmployeeIsDelivered;EmployeeNumberHome;EmployeeEmail;EmployeeSeniority";
 
       var csv = new StringBuilder(headers);
 
@@ -101,7 +101,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogInformation($"Edit employee with {id}");
       var employee = await _dbContext
         .Employees
-        .FirstOrDefaultAsync(x => x.IdEmployee == id);
+        .FirstOrDefaultAsync(x => x.EmployeeId == id);
 
       if(employee is null)
       {

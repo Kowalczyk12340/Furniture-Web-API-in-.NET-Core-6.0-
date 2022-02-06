@@ -29,7 +29,7 @@ namespace FurnitureAPI.Services.Interfaces
       var furniture = _mapper.Map<Furniture>(dto);
       await _dbContext.Furnitures.AddAsync(furniture);
       await _dbContext.SaveChangesAsync();
-      return furniture.IdFurniture;
+      return furniture.FurnitureId;
     }
 
     public async Task Delete(int id)
@@ -40,7 +40,7 @@ namespace FurnitureAPI.Services.Interfaces
         .Furnitures
         .Include(x => x.Order)
         .Include(x => x.CategoryFurniture)
-        .FirstOrDefaultAsync(x => x.IdFurniture == id);
+        .FirstOrDefaultAsync(x => x.FurnitureId == id);
 
       if(furniture == null)
       {
@@ -71,7 +71,7 @@ namespace FurnitureAPI.Services.Interfaces
         .Furnitures
         .Include(x => x.Order)
         .Include(x => x.CategoryFurniture)
-        .FirstOrDefaultAsync(x => x.IdFurniture == id);
+        .FirstOrDefaultAsync(x => x.FurnitureId == id);
 
       if (furniture == null)
       {
@@ -84,7 +84,7 @@ namespace FurnitureAPI.Services.Interfaces
 
     public string SaveToCsv(IEnumerable<FurnitureDto> components)
     {
-      var headers = "IdFurniture;IdOrder;IdCategoryFurniture;FurnitureName;FurniturePrice;FurnitureUnit;FurnitureWidth;FurnitureHeight;FurnitureDepth;FurnitureDescription;";
+      var headers = "FurnitureId;IdOrder;IdCategoryFurniture;FurnitureName;FurniturePrice;FurnitureUnit;FurnitureWidth;FurnitureHeight;FurnitureDepth;FurnitureDescription;";
 
       var csv = new StringBuilder(headers);
 
@@ -108,7 +108,7 @@ namespace FurnitureAPI.Services.Interfaces
         .Furnitures
         .Include(x => x.Order)
         .Include(x => x.CategoryFurniture)
-        .FirstOrDefaultAsync(x => x.IdFurniture == id);
+        .FirstOrDefaultAsync(x => x.FurnitureId == id);
 
       if (furniture is null)
       {

@@ -29,7 +29,7 @@ namespace FurnitureAPI.Services.Interfaces
       var categoryMaterial = _mapper.Map<CategoryMaterial>(dto);
       await _dbContext.CategoryMaterials.AddAsync(categoryMaterial);
       await _dbContext.SaveChangesAsync();
-      return categoryMaterial.IdCategoryMaterial;
+      return categoryMaterial.CategoryMaterialId;
     }
 
     public async Task Delete(int id)
@@ -37,7 +37,7 @@ namespace FurnitureAPI.Services.Interfaces
       _logger.LogWarning($"It will be deleted category material with {id}");
       var categoryMaterial = await _dbContext
         .CategoryMaterials
-        .FirstOrDefaultAsync(x => x.IdCategoryMaterial == id);
+        .FirstOrDefaultAsync(x => x.CategoryMaterialId == id);
 
       if(categoryMaterial is null)
       {
@@ -66,7 +66,7 @@ namespace FurnitureAPI.Services.Interfaces
 
       var categoryMaterial = await _dbContext
         .CategoryMaterials
-        .FirstOrDefaultAsync(x => x.IdCategoryMaterial == id);
+        .FirstOrDefaultAsync(x => x.CategoryMaterialId == id);
 
       if(categoryMaterial is null)
       {
@@ -79,7 +79,7 @@ namespace FurnitureAPI.Services.Interfaces
 
     public string SaveToCsv(IEnumerable<CategoryMaterialDto> components)
     {
-      var headers = "IdCategoryMaterial;CategoryMaterialName;CategoryMaterialDescription";
+      var headers = "CategoryMaterialId;CategoryMaterialName;CategoryMaterialDescription";
       
       var csv = new StringBuilder(headers);
 
@@ -102,7 +102,7 @@ namespace FurnitureAPI.Services.Interfaces
       
       var categoryMaterial = await _dbContext
         .CategoryMaterials
-        .FirstOrDefaultAsync(x => x.IdCategoryMaterial == id);
+        .FirstOrDefaultAsync(x => x.CategoryMaterialId == id);
 
       if(categoryMaterial is null)
       {

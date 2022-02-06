@@ -29,7 +29,7 @@ namespace FurnitureAPI.Services.Interfaces
       var material = _mapper.Map<Material>(dto);
       await _dbContext.Materials.AddAsync(material);
       await _dbContext.SaveChangesAsync();
-      return material.IdMaterial;
+      return material.MaterialId;
     }
 
     public async Task Delete(int id)
@@ -38,7 +38,7 @@ namespace FurnitureAPI.Services.Interfaces
       var material = await _dbContext
         .Materials
         .Include(x => x.CategoryMaterial)
-        .FirstOrDefaultAsync(x => x.IdMaterial == id);
+        .FirstOrDefaultAsync(x => x.MaterialId == id);
 
       if(material is null)
       {
@@ -69,7 +69,7 @@ namespace FurnitureAPI.Services.Interfaces
       var material = await _dbContext
         .Materials
         .Include(x => x.CategoryMaterial)
-        .FirstOrDefaultAsync(x => x.IdMaterial == id);
+        .FirstOrDefaultAsync(x => x.MaterialId == id);
 
       if(material is null)
       {
@@ -82,7 +82,7 @@ namespace FurnitureAPI.Services.Interfaces
 
     public string SaveToCsv(IEnumerable<MaterialDto> components)
     {
-      var headers = "IdMaterial;IdCategoryMaterial;MaterialName;MaterialPrice;MaterialUnit;MaterialStockStatus;MaterialDescription;";
+      var headers = "MaterialId;IdCategoryMaterial;MaterialName;MaterialPrice;MaterialUnit;MaterialStockStatus;MaterialDescription;";
 
       var csv = new StringBuilder(headers);
 
@@ -105,7 +105,7 @@ namespace FurnitureAPI.Services.Interfaces
       var material = await _dbContext
         .Materials
         .Include(x => x.CategoryMaterial)
-        .FirstOrDefaultAsync(x => x.IdMaterial == id);
+        .FirstOrDefaultAsync(x => x.MaterialId == id);
 
       if(material is null)
       {
